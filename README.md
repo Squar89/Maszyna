@@ -1,2 +1,2 @@
 # Maszyna
-PO drugi projekt zaliczeniowy
+PO 2. projekt zaliczeniowy
