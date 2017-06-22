@@ -72,7 +72,10 @@ class Kolekcja(val plikKonfiguracyjny: File) {
         }
       }
       catch {
-        case _: IOException | NumberFormatException =>
+        case _: IOException =>
+          source.close()
+          throw new IOException()
+        case _: NumberFormatException =>
           source.close()
           throw new IOException()
       }
@@ -116,7 +119,10 @@ class Kolekcja(val plikKonfiguracyjny: File) {
         }
       }
       catch {
-        case _: IOException | NumberFormatException =>
+        case _: NumberFormatException =>
+          source.close()
+          throw new IOException()
+        case _: IOException =>
           source.close()
           throw new IOException()
       }
@@ -161,7 +167,7 @@ object Kolekcja {
   }
 
   private def zbadajPoprawnośćZmiany(zmiana: String): Boolean = {
-    return ((zmiana.charAt(0) == "x" || zmiana.charAt(0) == "+" || zmiana.charAt(0) == "-") && zmiana.drop(1).toDouble > 0)
+    return ((zmiana.charAt(0) == 'x' || zmiana.charAt(0) == '+' || zmiana.charAt(0) == '=') && zmiana.drop(1).toDouble > 0)
   }
 
   private def losujFarbę(kolekcjaFarb: List[Farba]): Farba = {
