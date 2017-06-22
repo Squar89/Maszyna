@@ -4,8 +4,8 @@ package Model
   * Created by squar on 21/06/2017.
   */
 class Pigment(private[this] val nazwa: String,
-              protected[Model] var toksycznośćZmiana: String, protected[Model] var jakośćZmiana: String,
-              protected[Model] val pierwszaFarba: String, protected[Model] val drugaFarba: String) {
+              private[Model] var toksycznośćZmiana: String, private[Model] var jakośćZmiana: String,
+              private[Model] val pierwszaFarba: String, private[Model] val drugaFarba: String) {
   def getNazwa(): String = {
     return nazwa
   }

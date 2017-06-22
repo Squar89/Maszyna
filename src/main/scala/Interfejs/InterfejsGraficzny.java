@@ -1,16 +1,24 @@
 package Interfejs;
 
+import java.io.IOException;
+
 /**
  *
  * @author squar
  */
 public class InterfejsGraficzny extends javax.swing.JFrame {
-
     /**
      * Creates new form Interfejs.InterfejsGraficzny
      */
     public InterfejsGraficzny() {
         initComponents();
+        /*
+        try {
+            new Model.Maszyna();
+        }
+        catch (IOException e) {
+            System.exit(1);
+        }*/
     }
 
     /**

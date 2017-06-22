@@ -1,43 +1,68 @@
 package Model
 
 import java.io.File
-import scala.io.Source
+import java.io.IOException
+import scala.io.{BufferedSource, Source}
 
 /**
   * Created by squar on 21/06/2017.
   */
 class Kolekcja(val plikKonfiguracyjny: File) {
-  protected[Model] var kolekcjaFarb: List[Farba] = _
-  protected[Model] var kolekcjaPigmentów: List[Pigment] = _
+  private[Model] var kolekcjaFarb: List[Farba] = _
+  private[Model] var kolekcjaPigmentów: List[Pigment] = _
   private[this] var aktualnaFarba: Farba = _
 
-  protected[Model] def wczytajKolekcję(): Unit = {
-    try {
-      var liniePliku: List[String] = Source.fromFile(plikKonfiguracyjny).getLines.toList
-      if (liniePliku == Nil) 
+  @throws(classOf[IOException])
+  private[Model] def wczytajKolekcję(): Unit = {
+    /* rzucam wyjątki i łapię je w modelu */
+    if (!plikKonfiguracyjny.isFile) {
+      throw new IOException()
     }
+    else {
+      val source: BufferedSource = Source.fromFile(plikKonfiguracyjny)
 
-    //TODO
+      try {
+        val liniePliku: List[String] = source.getLines.toList
+        liniePliku match {
+          case List(linia1: String, linia2: String) => {
+            wczytajFarby(new File(linia1))
+            wczytajKonfigurację(new File(linia2))
+          }
+          case _ => throw new IOException()
+        }
+      }
+      catch {
+        case e: IOException => {
+          source.close()
+          throw new IOException()
+        }
+      }
+      finally {
+        source.close()
+      }
+    }
   }
 
+  @throws(classOf[IOException])
   private def wczytajFarby(file: File): Unit = {
     //TODO
   }
 
+  @throws(classOf[IOException])
   private def wczytajKonfigurację(file: File): Unit = {
     //TODO
   }
 
-  protected[Model] def dodajFarbę(): Unit = {
+  private[Model] def dodajFarbę(): Unit = {
     //TODO
   }
 
-  protected[Model] def dodajPigment(): Unit = {
+  private[Model] def dodajPigment(): Unit = {
     //TODO
   }
 
   //Bardzo możliwe że nie będzie w ogóle potrzebne
-  protected[Model] def getAktualnaFarba(): Farba = {
+  private[Model] def getAktualnaFarba(): Farba = {
     return aktualnaFarba
   }
 }

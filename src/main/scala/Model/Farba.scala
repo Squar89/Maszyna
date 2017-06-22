@@ -3,7 +3,7 @@ package Model
 /**
   * Created by squar on 21/06/2017.
   */
-class Farba(private[this] val kolor: String, protected[Model] var toksyczność: Double, protected[Model] var jakość: Double) {
+class Farba(private[this] val kolor: String, private[Model] var toksyczność: Double, private[Model] var jakość: Double) {
   def getKolor(): String = {
     return kolor
   }
