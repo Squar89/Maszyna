@@ -142,8 +142,8 @@ class Kolekcja(val plikKonfiguracyjny: File) {
   }
 
   //Bardzo możliwe że nie będzie w ogóle potrzebne
-  private[Model] def getAktualnaFarba(): Farba = {
-    return aktualnaFarba
+  private[Model] def getAktualnaFarba: Farba = {
+    aktualnaFarba
   }
 }
 
@@ -152,29 +152,29 @@ object Kolekcja {
   private val limitJakości: Int = 100
 
   private def zbadajPoprawnośćNazwyFarby(nazwaFarby: String): Boolean = {
-    return nazwaFarby.charAt(0).isLetter && nazwaFarby.forall(x => x.isLetterOrDigit || x == '-')
+    nazwaFarby.charAt(0).isLetter && nazwaFarby.forall(x => x.isLetterOrDigit || x == '-')
   }
 
   private def zbadajPoprawnośćToksyczności(toksyczność: String): Boolean = {
-    return toksyczność.toInt >= 0 && toksyczność.toInt <= Kolekcja.limitToksyczności
+    toksyczność.toInt >= 0 && toksyczność.toInt <= Kolekcja.limitToksyczności
   }
 
   private def zbadajPoprawnośćJakości(jakość: String): Boolean = {
-    return jakość.toInt >= 0 && jakość.toInt <= Kolekcja.limitJakości
+    jakość.toInt >= 0 && jakość.toInt <= Kolekcja.limitJakości
   }
 
   private def zbadajPoprawnośćNazwyPigmentu(nazwaPigmentu: String): Boolean = {
-    return nazwaPigmentu.forall(x => x.isLetterOrDigit)
+    nazwaPigmentu.forall(x => x.isLetterOrDigit)
   }
 
   private def zbadajPoprawnośćZmiany(zmiana: String): Boolean = {
-    return ((zmiana.charAt(0) == 'x' || zmiana.charAt(0) == '+' || zmiana.charAt(0) == '=') && zmiana.drop(1).toDouble > 0)
+    (zmiana.charAt(0) == 'x' || zmiana.charAt(0) == '+' || zmiana.charAt(0) == '=') && zmiana.drop(1).toDouble > 0
   }
 
   private def losujFarbę(kolekcjaFarb: List[Farba]): Farba = {
     val alfabet: String = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-"
     def losowyZnakZAlfabetu: Char = {
-      return alfabet.charAt(Random.nextInt(alfabet.length - 1))
+      alfabet.charAt(Random.nextInt(alfabet.length - 1))
     }
     var nazwa: String = ""
 
@@ -186,27 +186,27 @@ object Kolekcja {
       nazwa += losowyZnakZAlfabetu
     }
 
-    return new Farba(nazwa, losujToksyczność(), losujJakość())
+    new Farba(nazwa, losujToksyczność(), losujJakość())
   }
 
   private def losujToksyczność(): Int = {
-    return Random.nextInt(limitToksyczności)
+    Random.nextInt(limitToksyczności)
   }
 
   private def losujJakość(): Int = {
-    return Random.nextInt(limitJakości)
+    Random.nextInt(limitJakości)
   }
 
   private def losujZmianę(): String = {
     val alfabet: String = "*+-"
     def losowyZnakZAlfabetu: Char = {
-      return alfabet.charAt(Random.nextInt(alfabet.length - 1))
+      alfabet.charAt(Random.nextInt(alfabet.length - 1))
     }
     def losowaZmiana: String = {
       /* losuje liczbę rzeczywistą z przedziału (0 - 100) z zaokrągleniem do części setnych */
-      return "" + ((Random.nextDouble() * Random.nextInt(limitToksyczności)) % 0.01)
+      "" + ((Random.nextDouble() * Random.nextInt(limitToksyczności)) % 0.01)
     }
 
-    return "" + losowyZnakZAlfabetu + losowaZmiana
+    "" + losowyZnakZAlfabetu + losowaZmiana
   }
 }
