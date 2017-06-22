@@ -133,12 +133,56 @@ class Kolekcja(val plikKonfiguracyjny: File) {
     }
   }
 
+  private[Model] def losujFarbę(): Farba = {
+    /* Zwraca losowo wybraną farbę z kolekcji farb */
+    kolekcjaFarb.apply(Random.nextInt(kolekcjaFarb.length - 1))
+  }
+
+  private def losujNazwęFarby(): String = {
+    val alfabet: String = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-"
+    def losowyZnakZAlfabetu: Char = {
+      alfabet.charAt(Random.nextInt(alfabet.length - 1))
+    }
+    var nazwa: String = ""
+
+    nazwa += losowyZnakZAlfabetu
+    while (!nazwa.charAt(0).isLetter) {
+      nazwa = "" + losowyZnakZAlfabetu
+    }
+    while (kolekcjaFarb.exists(x => x.getKolor() == nazwa)) {
+      nazwa += losowyZnakZAlfabetu
+    }
+
+    nazwa
+  }
+
+  private def losujNazwęPigmentu(): String = {
+    val alfabet: String = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+    def losowyZnakZAlfabetu: Char = {
+      alfabet.charAt(Random.nextInt(alfabet.length -1))
+    }
+    var nazwa: String = ""
+
+    nazwa += losowyZnakZAlfabetu
+    while (kolekcjaPigmentów.exists(x => x.getNazwa() == nazwa)) {
+      nazwa += losowyZnakZAlfabetu
+    }
+
+    nazwa
+  }
   private[Model] def dodajFarbę(): Unit = {
-    //TODO
+    kolekcjaFarb = new Farba(losujNazwęFarby(), Kolekcja.losujToksyczność(), Kolekcja.losujJakość()) :: kolekcjaFarb
   }
 
   private[Model] def dodajPigment(): Unit = {
-    //TODO
+    if (kolekcjaFarb != Nil) {
+      kolekcjaPigmentów = new Pigment(losujNazwęPigmentu(), losujFarbę().getKolor(), losujFarbę().getKolor(),
+        Kolekcja.losujZmianę(), Kolekcja.losujZmianę()) :: kolekcjaPigmentów
+    }
+    else {
+      kolekcjaPigmentów = new Pigment(losujNazwęPigmentu(), losujNazwęFarby(), losujNazwęFarby(),
+        Kolekcja.losujZmianę(), Kolekcja.losujZmianę()) :: kolekcjaPigmentów
+    }
   }
 
   //Bardzo możliwe że nie będzie w ogóle potrzebne
@@ -169,24 +213,6 @@ object Kolekcja {
 
   private def zbadajPoprawnośćZmiany(zmiana: String): Boolean = {
     (zmiana.charAt(0) == 'x' || zmiana.charAt(0) == '+' || zmiana.charAt(0) == '=') && zmiana.drop(1).toDouble > 0
-  }
-
-  private def losujFarbę(kolekcjaFarb: List[Farba]): Farba = {
-    val alfabet: String = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-"
-    def losowyZnakZAlfabetu: Char = {
-      alfabet.charAt(Random.nextInt(alfabet.length - 1))
-    }
-    var nazwa: String = ""
-
-    nazwa += losowyZnakZAlfabetu
-    while (!nazwa.charAt(0).isLetter) {
-      nazwa = "" + losowyZnakZAlfabetu
-    }
-    while (kolekcjaFarb.exists(x => x.getKolor() == nazwa)) {
-      nazwa += losowyZnakZAlfabetu
-    }
-
-    new Farba(nazwa, losujToksyczność(), losujJakość())
   }
 
   private def losujToksyczność(): Int = {
