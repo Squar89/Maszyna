@@ -3,6 +3,7 @@ package Model
 import java.io.File
 import java.io.IOException
 import scala.io.{BufferedSource, Source}
+import scala.util.Random
 
 /**
   * Created by squar on 21/06/2017.
@@ -171,17 +172,41 @@ object Kolekcja {
   }
 
   private def losujFarbę(kolekcjaFarb: List[Farba]): Farba = {
-    //TODO
-    return new Farba("", 0, 0)
+    val alfabet: String = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-"
+    def losowyZnakZAlfabetu: Char = {
+      return alfabet.charAt(Random.nextInt(alfabet.length - 1))
+    }
+    var nazwa: String = ""
+
+    nazwa += losowyZnakZAlfabetu
+    while (!nazwa.charAt(0).isLetter) {
+      nazwa = "" + losowyZnakZAlfabetu
+    }
+    while (kolekcjaFarb.exists(x => x.getKolor() == nazwa)) {
+      nazwa += losowyZnakZAlfabetu
+    }
+
+    return new Farba(nazwa, losujToksyczność(), losujJakość())
   }
 
-  private def losujToksycznośćLubJakość(): Int = {
-    //TODO
-    return 321312
+  private def losujToksyczność(): Int = {
+    return Random.nextInt(limitToksyczności)
   }
 
-  private def losujZmianęToksycznościLubJakości(): String = {
-    //TODO
-    return "TODO"
+  private def losujJakość(): Int = {
+    return Random.nextInt(limitJakości)
+  }
+
+  private def losujZmianę(): String = {
+    val alfabet: String = "*+-"
+    def losowyZnakZAlfabetu: Char = {
+      return alfabet.charAt(Random.nextInt(alfabet.length - 1))
+    }
+    def losowaZmiana: String = {
+      /* losuje liczbę rzeczywistą z przedziału (0 - 100) z zaokrągleniem do części setnych */
+      return "" + ((Random.nextDouble() * Random.nextInt(limitToksyczności)) % 0.01)
+    }
+
+    return "" + losowyZnakZAlfabetu + losowaZmiana
   }
 }
