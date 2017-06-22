@@ -3,9 +3,8 @@ package Model
 /**
   * Created by squar on 21/06/2017.
   */
-class Pigment(private[this] val nazwa: String,
-              private[Model] var toksycznośćZmiana: String, private[Model] var jakośćZmiana: String,
-              private[Model] val pierwszaFarba: String, private[Model] val drugaFarba: String) {
+class Pigment(private[this] val nazwa: String,private[Model] val pierwszaFarba: String, private[Model] val drugaFarba: String,
+              private[Model] var toksycznośćZmiana: String, private[Model] var jakośćZmiana: String) {
   def getNazwa(): String = {
     return nazwa
   }

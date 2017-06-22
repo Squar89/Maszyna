@@ -53,10 +53,11 @@ class Kolekcja(val plikKonfiguracyjny: File) {
         for (linia: String <- source.getLines()) {
           val parametry: Array[String] = linia.split(' ')
 
-          /* sprawdzam czy podane dane są poprawne składniowo */
-          if (parametry.length != 3 || !parametry(0).charAt(0).isLetter
-            || !(parametry(1).toInt >= 0 && parametry(1).toInt <= Kolekcja.limitToksyczności)
-            || !(parametry(2).toInt >= 0 && parametry(2).toInt <= Kolekcja.limitJakości)) {
+          /* sprawdzam czy dana linia jest poprawna składniowo */
+          if (parametry.length != 3
+            || !Kolekcja.zbadajPoprawnośćNazwyFarby(parametry(0))
+            || !Kolekcja.zbadajPoprawnośćToksyczności(parametry(1))
+            || !Kolekcja.zbadajPoprawnośćJakości(parametry(2))) {
             throw new IOException()
           }
           else {
@@ -83,7 +84,46 @@ class Kolekcja(val plikKonfiguracyjny: File) {
 
   @throws(classOf[IOException])
   private def wczytajKonfigurację(plikKonfiguracja: File): Unit = {
-    //TODO
+    if (!plikKonfiguracja.isFile) {
+      throw new IOException()
+    }
+    else {
+      val source: BufferedSource = Source.fromFile(plikKonfiguracja)
+
+      try {
+        for (linia: String <- source.getLines()) {
+          val parametry: Array[String] = linia.split(' ')
+
+          /* sprawdzam czy dana linia jest poprawna składniowo */
+          if (parametry.length != 5
+            || !Kolekcja.zbadajPoprawnośćNazwyPigmentu(parametry(0))
+            || !Kolekcja.zbadajPoprawnośćNazwyFarby(parametry(1))
+            || !Kolekcja.zbadajPoprawnośćNazwyFarby(parametry(2))
+            || !Kolekcja.zbadajPoprawnośćZmiany(parametry(3))
+            || !Kolekcja.zbadajPoprawnośćZmiany(parametry(4))) {
+            throw new IOException()
+          }
+          else {
+            /* sprawdzam czy istnieje juź pigment o podanej nazwie */
+            if (kolekcjaPigmentów.exists(x => x.getNazwa() == parametry(0))) {
+              throw new IOException()
+            }
+            else {
+              kolekcjaPigmentów =
+                new Pigment(parametry(0), parametry(1), parametry(2), parametry(3), parametry(4)) :: kolekcjaPigmentów
+            }
+          }
+        }
+      }
+      catch {
+        case _: IOException | NumberFormatException =>
+          source.close()
+          throw new IOException()
+      }
+      finally {
+        source.close()
+      }
+    }
   }
 
   private[Model] def dodajFarbę(): Unit = {
@@ -103,6 +143,26 @@ class Kolekcja(val plikKonfiguracyjny: File) {
 object Kolekcja {
   private val limitToksyczności: Int = 100
   private val limitJakości: Int = 100
+
+  private def zbadajPoprawnośćNazwyFarby(nazwaFarby: String): Boolean = {
+    return nazwaFarby.charAt(0).isLetter && nazwaFarby.forall(x => x.isLetterOrDigit || x == '-')
+  }
+
+  private def zbadajPoprawnośćToksyczności(toksyczność: String): Boolean = {
+    return toksyczność.toInt >= 0 && toksyczność.toInt <= Kolekcja.limitToksyczności
+  }
+
+  private def zbadajPoprawnośćJakości(jakość: String): Boolean = {
+    return jakość.toInt >= 0 && jakość.toInt <= Kolekcja.limitJakości
+  }
+
+  private def zbadajPoprawnośćNazwyPigmentu(nazwaPigmentu: String): Boolean = {
+    return nazwaPigmentu.forall(x => x.isLetterOrDigit)
+  }
+
+  private def zbadajPoprawnośćZmiany(zmiana: String): Boolean = {
+    return ((zmiana.charAt(0) == "x" || zmiana.charAt(0) == "+" || zmiana.charAt(0) == "-") && zmiana.drop(1).toDouble > 0)
+  }
 
   private def losujFarbę(kolekcjaFarb: List[Farba]): Farba = {
     //TODO
