@@ -225,7 +225,6 @@ class Kolekcja(val plikKonfiguracyjny: File) {
     Nil//TODO
   }
 
-  //Bardzo możliwe że nie będzie w ogóle potrzebne
   private[Model] def getAktualnaFarba: Farba = {
     aktualnaFarba
   }

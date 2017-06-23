@@ -5,15 +5,23 @@ package Model
   */
 class Farba(private[this] val kolor: String, private[Model] var toksyczność: Double, private[Model] var jakość: Double) {
   def getKolor(): String = {
-    return kolor
+    kolor
   }
 
   def getToksyczność(): Double = {
-    return toksyczność
+    toksyczność
+  }
+
+  def setToksyczność(nowaWartość: Double): Unit = {
+    toksyczność = nowaWartość
   }
 
   def getJakość(): Double = {
-    return jakość
+    jakość
+  }
+
+  def setJakość(nowaWartość: Double): Unit = {
+    jakość = nowaWartość
   }
 
   override def toString: String = {

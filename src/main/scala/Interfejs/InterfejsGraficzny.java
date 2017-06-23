@@ -1,24 +1,16 @@
 package Interfejs;
 
-import java.io.IOException;
-
 /**
  *
  * @author squar
  */
 public class InterfejsGraficzny extends javax.swing.JFrame {
+
     /**
-     * Creates new form Interfejs.InterfejsGraficzny
+     * Creates new form InterfejsGraficzny
      */
     public InterfejsGraficzny() {
         initComponents();
-        /*
-        try {
-            new Model.Maszyna();
-        }
-        catch (IOException e) {
-            System.exit(1);
-        }*/
     }
 
     /**
@@ -31,170 +23,157 @@ public class InterfejsGraficzny extends javax.swing.JFrame {
     private void initComponents() {
 
         jButton5 = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        farbyPanel = new javax.swing.JPanel();
+        dodajFarbeButton = new javax.swing.JButton();
+        usuńZaznaczenieFarbyButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
-        jPanel2 = new javax.swing.JPanel();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        farbyJList = new javax.swing.JList<>();
+        pigmentyPanel = new javax.swing.JPanel();
+        dodajPigmentButton = new javax.swing.JButton();
+        usuńZaznaczeniePigmentyButton = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jList2 = new javax.swing.JList<>();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
-        jFormattedTextField2 = new javax.swing.JFormattedTextField();
-        jFormattedTextField3 = new javax.swing.JFormattedTextField();
-        jFormattedTextField4 = new javax.swing.JFormattedTextField();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
+        pigmentyJList = new javax.swing.JList<>();
+        toksycznośćLabel = new javax.swing.JLabel();
+        jakośćLabel = new javax.swing.JLabel();
+        zmianaToksycznośćLabel = new javax.swing.JLabel();
+        zmianaJakośćLabel = new javax.swing.JLabel();
+        toksycznośćFormattedTextField = new javax.swing.JFormattedTextField();
+        jakośćFormattedTextField = new javax.swing.JFormattedTextField();
+        zmianaToksycznośćFormattedTextField = new javax.swing.JFormattedTextField();
+        zmianaJakośćFormattedTextField = new javax.swing.JFormattedTextField();
+        mieszajButton = new javax.swing.JButton();
+        użyjPigmentuButton = new javax.swing.JButton();
+        zakończMieszanieButton = new javax.swing.JButton();
 
         jButton5.setText("jButton5");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Farby", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.ABOVE_TOP));
+        farbyPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Farby", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.ABOVE_TOP));
 
-        jButton1.setText("Dodaje farbę");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        dodajFarbeButton.setText("Dodaje farbę");
+        dodajFarbeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                dodajFarbeButtonActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Usuń zaznaczenie");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        usuńZaznaczenieFarbyButton.setText("Usuń zaznaczenie");
+        usuńZaznaczenieFarbyButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                usuńZaznaczenieFarbyButtonActionPerformed(evt);
             }
         });
 
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "TODO" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jList1.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+        farbyJList.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
-                jList1ValueChanged(evt);
+                farbyJListValueChanged(evt);
             }
         });
-        jScrollPane1.setViewportView(jList1);
+        jScrollPane1.setViewportView(farbyJList);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout farbyPanelLayout = new javax.swing.GroupLayout(farbyPanel);
+        farbyPanel.setLayout(farbyPanelLayout);
+        farbyPanelLayout.setHorizontalGroup(
+                farbyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, farbyPanelLayout.createSequentialGroup()
                                 .addContainerGap()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(farbyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                                        .addComponent(jButton2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                                        .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE))
+                                        .addComponent(usuńZaznaczenieFarbyButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                                        .addComponent(dodajFarbeButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE))
                                 .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+        farbyPanelLayout.setVerticalGroup(
+                farbyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, farbyPanelLayout.createSequentialGroup()
                                 .addContainerGap()
                                 .addComponent(jScrollPane1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton2)
+                                .addComponent(usuńZaznaczenieFarbyButton)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton1)
+                                .addComponent(dodajFarbeButton)
                                 .addContainerGap())
         );
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Pigmenty", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.ABOVE_TOP));
+        pigmentyPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Pigmenty", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.ABOVE_TOP));
 
-        jButton3.setText("Dodaj pigment");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        dodajPigmentButton.setText("Dodaj pigment");
+        dodajPigmentButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                dodajPigmentButtonActionPerformed(evt);
             }
         });
 
-        jButton4.setText("Usuń zaznaczenie");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        usuńZaznaczeniePigmentyButton.setText("Usuń zaznaczenie");
+        usuńZaznaczeniePigmentyButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                usuńZaznaczeniePigmentyButtonActionPerformed(evt);
             }
         });
 
-        jList2.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "TODO" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
+        pigmentyJList.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                pigmentyJListValueChanged(evt);
+            }
         });
-        jScrollPane2.setViewportView(jList2);
+        jScrollPane2.setViewportView(pigmentyJList);
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-                jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel2Layout.createSequentialGroup()
+        javax.swing.GroupLayout pigmentyPanelLayout = new javax.swing.GroupLayout(pigmentyPanel);
+        pigmentyPanel.setLayout(pigmentyPanelLayout);
+        pigmentyPanelLayout.setHorizontalGroup(
+                pigmentyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(pigmentyPanelLayout.createSequentialGroup()
                                 .addContainerGap()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
-                                        .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(pigmentyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(usuńZaznaczeniePigmentyButton, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
+                                        .addComponent(dodajPigmentButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                                 .addContainerGap())
         );
-        jPanel2Layout.setVerticalGroup(
-                jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+        pigmentyPanelLayout.setVerticalGroup(
+                pigmentyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pigmentyPanelLayout.createSequentialGroup()
                                 .addContainerGap()
                                 .addComponent(jScrollPane2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton4)
+                                .addComponent(usuńZaznaczeniePigmentyButton)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton3)
+                                .addComponent(dodajPigmentButton)
                                 .addContainerGap())
         );
 
-        jLabel1.setLabelFor(jFormattedTextField1);
-        jLabel1.setText("Toksyczność farby");
+        toksycznośćLabel.setLabelFor(toksycznośćFormattedTextField);
+        toksycznośćLabel.setText("Toksyczność farby");
 
-        jLabel2.setLabelFor(jFormattedTextField2);
-        jLabel2.setText("Jakość farby");
+        jakośćLabel.setLabelFor(jakośćFormattedTextField);
+        jakośćLabel.setText("Jakość farby");
 
-        jLabel3.setLabelFor(jFormattedTextField3);
-        jLabel3.setText("Zmiana toksyczności pigmentu");
+        zmianaToksycznośćLabel.setLabelFor(zmianaToksycznośćFormattedTextField);
+        zmianaToksycznośćLabel.setText("Zmiana toksyczności pigmentu");
 
-        jLabel4.setLabelFor(jFormattedTextField4);
-        jLabel4.setText("Zmiana jakości pigmentu");
+        zmianaJakośćLabel.setLabelFor(zmianaJakośćFormattedTextField);
+        zmianaJakośćLabel.setText("Zmiana jakości pigmentu");
 
-        jFormattedTextField1.setText("100");
-
-        jFormattedTextField2.setText("2");
-
-        jFormattedTextField3.setText("+100");
-
-        jFormattedTextField4.setText("*99");
-
-        jButton6.setText("Mieszaj");
-        jButton6.setPreferredSize(new java.awt.Dimension(150, 29));
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        mieszajButton.setText("Mieszaj");
+        mieszajButton.setPreferredSize(new java.awt.Dimension(150, 29));
+        mieszajButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                mieszajButtonActionPerformed(evt);
             }
         });
 
-        jButton7.setText("Użyj pigmentu");
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
+        użyjPigmentuButton.setText("Użyj pigmentu");
+        użyjPigmentuButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
+                użyjPigmentuButtonActionPerformed(evt);
             }
         });
 
-        jButton8.setText("Zakończ mieszanie");
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
+        zakończMieszanieButton.setText("Zakończ mieszanie");
+        zakończMieszanieButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
+                zakończMieszanieButtonActionPerformed(evt);
             }
         });
 
@@ -203,29 +182,29 @@ public class InterfejsGraficzny extends javax.swing.JFrame {
         layout.setHorizontalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(farbyPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(pigmentyPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(layout.createSequentialGroup()
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                                        .addComponent(toksycznośćLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                        .addComponent(jakośćLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                        .addComponent(zmianaJakośćLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                        .addComponent(zmianaToksycznośćLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(jFormattedTextField3)
-                                                        .addComponent(jFormattedTextField2)
-                                                        .addComponent(jFormattedTextField1)
-                                                        .addComponent(jFormattedTextField4, javax.swing.GroupLayout.Alignment.TRAILING)))
+                                                        .addComponent(zmianaToksycznośćFormattedTextField)
+                                                        .addComponent(jakośćFormattedTextField)
+                                                        .addComponent(toksycznośćFormattedTextField)
+                                                        .addComponent(zmianaJakośćFormattedTextField, javax.swing.GroupLayout.Alignment.TRAILING)))
                                         .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
+                                                .addComponent(mieszajButton, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(użyjPigmentuButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(zakończMieszanieButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                 .addGap(12, 12, 12)))
                                 .addContainerGap())
         );
@@ -233,73 +212,77 @@ public class InterfejsGraficzny extends javax.swing.JFrame {
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(farbyPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addGroup(layout.createSequentialGroup()
                                                 .addGap(15, 15, 15)
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                         .addGroup(layout.createSequentialGroup()
                                                                 .addGap(1, 1, 1)
-                                                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                        .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                                .addComponent(toksycznośćLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                        .addComponent(toksycznośćFormattedTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                                 .addGap(18, 18, 18)
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                         .addGroup(layout.createSequentialGroup()
                                                                 .addGap(1, 1, 1)
-                                                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                        .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                                .addComponent(jakośćLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                        .addComponent(jakośćFormattedTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                                 .addGap(57, 57, 57)
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                         .addGroup(layout.createSequentialGroup()
                                                                 .addGap(1, 1, 1)
-                                                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                        .addComponent(jFormattedTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                                .addComponent(zmianaToksycznośćLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                        .addComponent(zmianaToksycznośćFormattedTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                                 .addGap(18, 18, 18)
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                         .addGroup(layout.createSequentialGroup()
                                                                 .addGap(1, 1, 1)
-                                                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                        .addComponent(jFormattedTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                                .addComponent(zmianaJakośćLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                        .addComponent(zmianaJakośćFormattedTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                                 .addGap(18, 18, 18)
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, 64, Short.MAX_VALUE)
-                                                        .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                        .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                                        .addComponent(mieszajButton, javax.swing.GroupLayout.DEFAULT_SIZE, 64, Short.MAX_VALUE)
+                                                        .addComponent(użyjPigmentuButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                        .addComponent(zakończMieszanieButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                        .addComponent(pigmentyPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
+    private void usuńZaznaczenieFarbyButtonActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
     }
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {
+    private void dodajPigmentButtonActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
     }
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
+    private void dodajFarbeButtonActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
     }
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {
+    private void usuńZaznaczeniePigmentyButtonActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
     }
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {
+    private void mieszajButtonActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
     }
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {
+    private void użyjPigmentuButtonActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
     }
 
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {
+    private void zakończMieszanieButtonActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
     }
 
-    private void jList1ValueChanged(javax.swing.event.ListSelectionEvent evt) {
+    private void farbyJListValueChanged(javax.swing.event.ListSelectionEvent evt) {
+        // TODO add your handling code here:
+    }
+
+    private void pigmentyJListValueChanged(javax.swing.event.ListSelectionEvent evt) {
         // TODO add your handling code here:
     }
 
@@ -339,27 +322,27 @@ public class InterfejsGraficzny extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton dodajFarbeButton;
+    private javax.swing.JButton dodajPigmentButton;
+    private javax.swing.JList<String> farbyJList;
+    private javax.swing.JPanel farbyPanel;
     private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
-    private javax.swing.JFormattedTextField jFormattedTextField2;
-    private javax.swing.JFormattedTextField jFormattedTextField3;
-    private javax.swing.JFormattedTextField jFormattedTextField4;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JList<String> jList1;
-    private javax.swing.JList<String> jList2;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JFormattedTextField jakośćFormattedTextField;
+    private javax.swing.JLabel jakośćLabel;
+    private javax.swing.JButton mieszajButton;
+    private javax.swing.JList<String> pigmentyJList;
+    private javax.swing.JPanel pigmentyPanel;
+    private javax.swing.JFormattedTextField toksycznośćFormattedTextField;
+    private javax.swing.JLabel toksycznośćLabel;
+    private javax.swing.JButton usuńZaznaczenieFarbyButton;
+    private javax.swing.JButton usuńZaznaczeniePigmentyButton;
+    private javax.swing.JButton użyjPigmentuButton;
+    private javax.swing.JButton zakończMieszanieButton;
+    private javax.swing.JFormattedTextField zmianaJakośćFormattedTextField;
+    private javax.swing.JLabel zmianaJakośćLabel;
+    private javax.swing.JFormattedTextField zmianaToksycznośćFormattedTextField;
+    private javax.swing.JLabel zmianaToksycznośćLabel;
     // End of variables declaration
 }
