@@ -1,12 +1,10 @@
 package Model
 
-import java.io.File
-import java.io.IOException
-
-import Wyjątki.ZłyPigmentException
+import java.io.{File, IOException}
 
 import scala.io.{BufferedSource, Source}
 import scala.util.Random
+import Wyjątki.{ZłaFarbaException, ZłyPigmentException}
 
 /**
   * Created by squar on 21/06/2017.
@@ -15,6 +13,7 @@ class Kolekcja(val plikKonfiguracyjny: File) {
   private[Model] var kolekcjaFarb: List[Farba] = Nil
   private[Model] var kolekcjaPigmentów: List[Pigment] = Nil
   private[this] var aktualnaFarba: Farba = _
+  wczytajKolekcję()
 
   @throws(classOf[IOException])
   private[Model] def wczytajKolekcję(): Unit = {
@@ -27,7 +26,7 @@ class Kolekcja(val plikKonfiguracyjny: File) {
     try {
       val liniePliku: List[String] = source.getLines.toList
       liniePliku match {
-        case List(linia1: String, linia2: String) =>
+        case List(linia1: String, linia2: String, _: String) =>
           wczytajFarby(new File(linia1))
           wczytajKonfigurację(new File(linia2))
         case _ => throw new IOException()
@@ -202,13 +201,42 @@ class Kolekcja(val plikKonfiguracyjny: File) {
     aktualnaFarba
   }
 
+  @throws(classOf[ZłaFarbaException])
+  private[Model] def znajdźFarbę(kolor: String): Farba = {
+    kolekcjaFarb.find(x => x.getKolor() == kolor) match {
+      case Some(farba) => farba
+      case None => throw ZłaFarbaException("Brak takiej farby w kolekcji!")
+    }
+  }
+
+  @throws(classOf[ZłyPigmentException])
+  private[Model] def znajdźPigment(nazwa: String): Pigment = {
+    kolekcjaPigmentów.find(x => x.getNazwa() == nazwa) match {
+      case Some(pigment) => pigment
+      case None => throw ZłyPigmentException("Brak takiego pigmentu w kolekcji!")
+    }
+  }
+
+  private[Model] def eksportujListęFarb(): List[String] = {
+    Nil//TODO
+  }
+
+  private[Model] def eksportujListęPigmentów(): List[(String, String)] = {
+    Nil//TODO
+  }
+
   //Bardzo możliwe że nie będzie w ogóle potrzebne
   private[Model] def getAktualnaFarba: Farba = {
     aktualnaFarba
   }
+
+
+  private[Model] def setAktualnaFarba(farba: Farba): Unit = {
+    aktualnaFarba = farba
+  }
 }
 
-object Kolekcja {
+private object Kolekcja {
   private val limitToksyczności: Int = 100
   private val limitJakości: Int = 100
 
