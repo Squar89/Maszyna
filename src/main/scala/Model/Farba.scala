@@ -16,4 +16,5 @@ class Farba(private[this] val kolor: String, private[Model] var toksyczność: D
     return jakość
   }
 
+  //TODO toString
 }

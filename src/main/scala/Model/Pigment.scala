@@ -25,5 +25,5 @@ class Pigment(private[this] val nazwa: String,private[Model] val pierwszaFarba: 
     return drugaFarba
   }
 
-
+  //TODO toString
 }

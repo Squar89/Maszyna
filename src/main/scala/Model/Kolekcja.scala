@@ -182,9 +182,9 @@ class Kolekcja(val plikKonfiguracyjny: File) {
     if (aktualnaFarba.getKolor() != pigment.getPierwszaFarba()) {
       throw ZłyPigmentException("Danego pigmentu nie można mieszać z aktualną farbą!")
     }
-
-    
     //TODO
+
+    new Farba("", 0, 0)//TODO
   }
 
   //Bardzo możliwe że nie będzie w ogóle potrzebne
