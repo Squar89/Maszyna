@@ -177,14 +177,29 @@ class Kolekcja(val plikKonfiguracyjny: File) {
     }
   }
 
+  /* aplikuje pigment do aktualnej farby */
+  @throws(classOf[ZłyPigmentException])
   private[Model] def aplikujPigment(pigment: Pigment): Farba = {
-    /* aplikuje pigment do aktualnej farby */
+    /* sprawdzam czy pigment pasuje do wybranej farby */
     if (aktualnaFarba.getKolor() != pigment.getPierwszaFarba()) {
       throw ZłyPigmentException("Danego pigmentu nie można mieszać z aktualną farbą!")
     }
-    //TODO
 
-    new Farba("", 0, 0)//TODO
+    def obliczZmianę(wartość: Double, zmiana: String): Double = zmiana.charAt(0) match {
+        case '*' => wartość * zmiana.drop(1).toDouble
+        case '+' => wartość + zmiana.drop(1).toDouble
+        case '-' => wartość - zmiana.drop(1).toDouble
+      }
+
+    val nowyKolor = pigment.getDrugaFarba()
+    val nowaToksyczność =
+      Math.max(Kolekcja.limitToksyczności, obliczZmianę(aktualnaFarba.getToksyczność(), pigment.getToksycznośćZmiana()))
+    val nowaJakość =
+      Math.max(Kolekcja.limitJakości, obliczZmianę(aktualnaFarba.getJakość(), pigment.getJakośćZmiana()))
+
+    aktualnaFarba = new Farba(nowyKolor, nowaToksyczność, nowaJakość)
+
+    aktualnaFarba
   }
 
   //Bardzo możliwe że nie będzie w ogóle potrzebne

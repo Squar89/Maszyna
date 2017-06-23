@@ -16,5 +16,7 @@ class Farba(private[this] val kolor: String, private[Model] var toksyczność: D
     return jakość
   }
 
-  //TODO toString
+  override def toString: String = {
+    s"Wybrana farba: $kolor, toksyczność: $toksyczność, jakość: $jakość"
+  }
 }
