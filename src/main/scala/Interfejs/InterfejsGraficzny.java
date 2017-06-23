@@ -1,5 +1,8 @@
 package Interfejs;
 
+import Wyjątki.*;
+import Model.Farba;
+import Model.Pigment;
 /**
  *
  * @author squar
@@ -21,6 +24,7 @@ public class InterfejsGraficzny extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">
     private void initComponents() {
+        bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
         jButton5 = new javax.swing.JButton();
         farbyPanel = new javax.swing.JPanel();
@@ -112,11 +116,6 @@ public class InterfejsGraficzny extends javax.swing.JFrame {
             }
         });
 
-        pigmentyJList.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
-            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
-                pigmentyJListValueChanged(evt);
-            }
-        });
         jScrollPane2.setViewportView(pigmentyJList);
 
         javax.swing.GroupLayout pigmentyPanelLayout = new javax.swing.GroupLayout(pigmentyPanel);
@@ -154,6 +153,18 @@ public class InterfejsGraficzny extends javax.swing.JFrame {
 
         zmianaJakośćLabel.setLabelFor(zmianaJakośćFormattedTextField);
         zmianaJakośćLabel.setText("Zmiana jakości pigmentu");
+
+        org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, farbyJList, org.jdesktop.beansbinding.ELProperty.create("${selectedElement.toksyczność}"), toksycznośćFormattedTextField, org.jdesktop.beansbinding.BeanProperty.create("value"));
+        bindingGroup.addBinding(binding);
+
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, farbyJList, org.jdesktop.beansbinding.ELProperty.create("${selectedElement.jakość}"), jakośćFormattedTextField, org.jdesktop.beansbinding.BeanProperty.create("value"));
+        bindingGroup.addBinding(binding);
+
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, pigmentyJList, org.jdesktop.beansbinding.ELProperty.create("${selectedElement.toksycznośćZmiana}"), zmianaToksycznośćFormattedTextField, org.jdesktop.beansbinding.BeanProperty.create("value"));
+        bindingGroup.addBinding(binding);
+
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, dodajPigmentButton, org.jdesktop.beansbinding.ELProperty.create("${selectedElement.jakośćZmiana}"), zmianaJakośćFormattedTextField, org.jdesktop.beansbinding.BeanProperty.create("value"));
+        bindingGroup.addBinding(binding);
 
         mieszajButton.setText("Mieszaj");
         mieszajButton.setPreferredSize(new java.awt.Dimension(150, 29));
@@ -247,6 +258,8 @@ public class InterfejsGraficzny extends javax.swing.JFrame {
                                 .addContainerGap())
         );
 
+        bindingGroup.bind();
+
         pack();
     }// </editor-fold>
 
@@ -279,10 +292,6 @@ public class InterfejsGraficzny extends javax.swing.JFrame {
     }
 
     private void farbyJListValueChanged(javax.swing.event.ListSelectionEvent evt) {
-        // TODO add your handling code here:
-    }
-
-    private void pigmentyJListValueChanged(javax.swing.event.ListSelectionEvent evt) {
         // TODO add your handling code here:
     }
 
@@ -324,7 +333,7 @@ public class InterfejsGraficzny extends javax.swing.JFrame {
     // Variables declaration - do not modify
     private javax.swing.JButton dodajFarbeButton;
     private javax.swing.JButton dodajPigmentButton;
-    private javax.swing.JList<String> farbyJList;
+    private javax.swing.JList<Farba> farbyJList;
     private javax.swing.JPanel farbyPanel;
     private javax.swing.JButton jButton5;
     private javax.swing.JScrollPane jScrollPane1;
@@ -332,7 +341,7 @@ public class InterfejsGraficzny extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField jakośćFormattedTextField;
     private javax.swing.JLabel jakośćLabel;
     private javax.swing.JButton mieszajButton;
-    private javax.swing.JList<String> pigmentyJList;
+    private javax.swing.JList<Pigment> pigmentyJList;
     private javax.swing.JPanel pigmentyPanel;
     private javax.swing.JFormattedTextField toksycznośćFormattedTextField;
     private javax.swing.JLabel toksycznośćLabel;
@@ -344,5 +353,6 @@ public class InterfejsGraficzny extends javax.swing.JFrame {
     private javax.swing.JLabel zmianaJakośćLabel;
     private javax.swing.JFormattedTextField zmianaToksycznośćFormattedTextField;
     private javax.swing.JLabel zmianaToksycznośćLabel;
+    private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration
 }
