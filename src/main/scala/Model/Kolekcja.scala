@@ -2,6 +2,9 @@ package Model
 
 import java.io.File
 import java.io.IOException
+
+import Wyjątki.ZłyPigmentException
+
 import scala.io.{BufferedSource, Source}
 import scala.util.Random
 
@@ -19,26 +22,24 @@ class Kolekcja(val plikKonfiguracyjny: File) {
     if (!plikKonfiguracyjny.isFile) {
       throw new IOException()
     }
-    else {
-      val source: BufferedSource = Source.fromFile(plikKonfiguracyjny)
+    val source: BufferedSource = Source.fromFile(plikKonfiguracyjny)
 
-      try {
-        val liniePliku: List[String] = source.getLines.toList
-        liniePliku match {
-          case List(linia1: String, linia2: String) =>
-            wczytajFarby(new File(linia1))
-            wczytajKonfigurację(new File(linia2))
-          case _ => throw new IOException()
-        }
+    try {
+      val liniePliku: List[String] = source.getLines.toList
+      liniePliku match {
+        case List(linia1: String, linia2: String) =>
+          wczytajFarby(new File(linia1))
+          wczytajKonfigurację(new File(linia2))
+        case _ => throw new IOException()
       }
-      catch {
-        case _: IOException =>
-          source.close()
-          throw new IOException()
-      }
-      finally {
+    }
+    catch {
+      case _: IOException =>
         source.close()
-      }
+        throw new IOException()
+    }
+    finally {
+      source.close()
     }
   }
 
@@ -47,42 +48,38 @@ class Kolekcja(val plikKonfiguracyjny: File) {
     if (!plikFarby.isFile) {
       throw new IOException()
     }
-    else {
-      val source: BufferedSource = Source.fromFile(plikFarby)
+    val source: BufferedSource = Source.fromFile(plikFarby)
 
-      try {
-        for (linia: String <- source.getLines()) {
-          val parametry: Array[String] = linia.split(' ')
+    try {
+      for (linia: String <- source.getLines()) {
+        val parametry: Array[String] = linia.split(' ')
 
-          /* sprawdzam czy dana linia jest poprawna składniowo */
-          if (parametry.length != 3
-            || !Kolekcja.zbadajPoprawnośćNazwyFarby(parametry(0))
-            || !Kolekcja.zbadajPoprawnośćToksyczności(parametry(1))
-            || !Kolekcja.zbadajPoprawnośćJakości(parametry(2))) {
-            throw new IOException()
-          }
-          else {
-            /* sprawdzam czy istnieje już farba o podanym kolorze */
-            if (kolekcjaFarb.exists(x => x.getKolor() == parametry(0))) {
-              throw new IOException()
-            }
-            else {
-              kolekcjaFarb = new Farba(parametry(0), parametry(1).toDouble, parametry(2).toDouble) :: kolekcjaFarb
-            }
-          }
+        /* sprawdzam czy dana linia jest poprawna składniowo */
+        if (parametry.length != 3
+          || !Kolekcja.zbadajPoprawnośćNazwyFarby(parametry(0))
+          || !Kolekcja.zbadajPoprawnośćToksyczności(parametry(1))
+          || !Kolekcja.zbadajPoprawnośćJakości(parametry(2))) {
+          throw new IOException()
         }
-      }
-      catch {
-        case _: IOException =>
-          source.close()
+
+        /* sprawdzam czy istnieje już farba o podanym kolorze */
+        if (kolekcjaFarb.exists(x => x.getKolor() == parametry(0))) {
           throw new IOException()
-        case _: NumberFormatException =>
-          source.close()
-          throw new IOException()
+        }
+
+        kolekcjaFarb = new Farba(parametry(0), parametry(1).toDouble, parametry(2).toDouble) :: kolekcjaFarb
       }
-      finally {
+    }
+    catch {
+      case _: IOException =>
         source.close()
-      }
+        throw new IOException()
+      case _: NumberFormatException =>
+        source.close()
+        throw new IOException()
+    }
+    finally {
+      source.close()
     }
   }
 
@@ -91,45 +88,40 @@ class Kolekcja(val plikKonfiguracyjny: File) {
     if (!plikKonfiguracja.isFile) {
       throw new IOException()
     }
-    else {
-      val source: BufferedSource = Source.fromFile(plikKonfiguracja)
+    val source: BufferedSource = Source.fromFile(plikKonfiguracja)
 
-      try {
-        for (linia: String <- source.getLines()) {
-          val parametry: Array[String] = linia.split(' ')
+    try {
+      for (linia: String <- source.getLines()) {
+        val parametry: Array[String] = linia.split(' ')
 
-          /* sprawdzam czy dana linia jest poprawna składniowo */
-          if (parametry.length != 5
-            || !Kolekcja.zbadajPoprawnośćNazwyPigmentu(parametry(0))
-            || !Kolekcja.zbadajPoprawnośćNazwyFarby(parametry(1))
-            || !Kolekcja.zbadajPoprawnośćNazwyFarby(parametry(2))
-            || !Kolekcja.zbadajPoprawnośćZmiany(parametry(3))
-            || !Kolekcja.zbadajPoprawnośćZmiany(parametry(4))) {
-            throw new IOException()
-          }
-          else {
-            /* sprawdzam czy istnieje juź pigment o podanej nazwie */
-            if (kolekcjaPigmentów.exists(x => x.getNazwa() == parametry(0))) {
-              throw new IOException()
-            }
-            else {
-              kolekcjaPigmentów =
-                new Pigment(parametry(0), parametry(1), parametry(2), parametry(3), parametry(4)) :: kolekcjaPigmentów
-            }
-          }
+        /* sprawdzam czy dana linia jest poprawna składniowo */
+        if (parametry.length != 5
+          || !Kolekcja.zbadajPoprawnośćNazwyPigmentu(parametry(0))
+          || !Kolekcja.zbadajPoprawnośćNazwyFarby(parametry(1))
+          || !Kolekcja.zbadajPoprawnośćNazwyFarby(parametry(2))
+          || !Kolekcja.zbadajPoprawnośćZmiany(parametry(3))
+          || !Kolekcja.zbadajPoprawnośćZmiany(parametry(4))) {
+          throw new IOException()
         }
-      }
-      catch {
-        case _: NumberFormatException =>
-          source.close()
+
+        /* sprawdzam czy istnieje juź pigment o podanej nazwie */
+        if (kolekcjaPigmentów.exists(x => x.getNazwa() == parametry(0))) {
           throw new IOException()
-        case _: IOException =>
-          source.close()
-          throw new IOException()
+        }
+        kolekcjaPigmentów =
+          new Pigment(parametry(0), parametry(1), parametry(2), parametry(3), parametry(4)) :: kolekcjaPigmentów
       }
-      finally {
+    }
+    catch {
+      case _: NumberFormatException =>
         source.close()
-      }
+        throw new IOException()
+      case _: IOException =>
+        source.close()
+        throw new IOException()
+    }
+    finally {
+      source.close()
     }
   }
 
@@ -183,6 +175,16 @@ class Kolekcja(val plikKonfiguracyjny: File) {
       kolekcjaPigmentów = new Pigment(losujNazwęPigmentu(), losujNazwęFarby(), losujNazwęFarby(),
         Kolekcja.losujZmianę(), Kolekcja.losujZmianę()) :: kolekcjaPigmentów
     }
+  }
+
+  private[Model] def aplikujPigment(pigment: Pigment): Farba = {
+    /* aplikuje pigment do aktualnej farby */
+    if (aktualnaFarba.getKolor() != pigment.getPierwszaFarba()) {
+      throw ZłyPigmentException("Danego pigmentu nie można mieszać z aktualną farbą!")
+    }
+
+    
+    //TODO
   }
 
   //Bardzo możliwe że nie będzie w ogóle potrzebne
