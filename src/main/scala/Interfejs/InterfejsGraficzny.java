@@ -1,6 +1,10 @@
 package Interfejs;
 
+import Model.Maszyna;
 import Wyjątki.*;
+import java.io.IOException;
+import java.util.List;
+
 import Model.Farba;
 import Model.Pigment;
 /**
@@ -8,13 +12,23 @@ import Model.Pigment;
  * @author squar
  */
 public class InterfejsGraficzny extends javax.swing.JFrame {
+    private Maszyna maszyna;
+    private javax.swing.DefaultListModel<Farba> modelFarby;
+    private javax.swing.DefaultListModel<Pigment> modelPigmenty;
 
-    /**
-     * Creates new form InterfejsGraficzny
-     */
     public InterfejsGraficzny() {
         initComponents();
+        try {
+            maszyna = new Model.Maszyna();
+            maszyna.konfiguruj();
+            ustawListęFarb(maszyna.pobierzListęFarb());
+            ustawListęPigmentów(maszyna.pobierzListęPigmentów());
+        }
+        catch (IOException e) {
+            System.exit(1);
+        }
     }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -31,12 +45,14 @@ public class InterfejsGraficzny extends javax.swing.JFrame {
         dodajFarbeButton = new javax.swing.JButton();
         usuńZaznaczenieFarbyButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        farbyJList = new javax.swing.JList<>();
+        modelFarby = new javax.swing.DefaultListModel<>();
+        farbyJList = new javax.swing.JList<>(modelFarby);
         pigmentyPanel = new javax.swing.JPanel();
         dodajPigmentButton = new javax.swing.JButton();
         usuńZaznaczeniePigmentyButton = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        pigmentyJList = new javax.swing.JList<>();
+        modelPigmenty = new javax.swing.DefaultListModel<>();
+        pigmentyJList = new javax.swing.JList<>(modelPigmenty);
         toksycznośćLabel = new javax.swing.JLabel();
         jakośćLabel = new javax.swing.JLabel();
         zmianaToksycznośćLabel = new javax.swing.JLabel();
@@ -69,6 +85,7 @@ public class InterfejsGraficzny extends javax.swing.JFrame {
             }
         });
 
+        farbyJList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         farbyJList.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
                 farbyJListValueChanged(evt);
@@ -116,6 +133,7 @@ public class InterfejsGraficzny extends javax.swing.JFrame {
             }
         });
 
+        pigmentyJList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane2.setViewportView(pigmentyJList);
 
         javax.swing.GroupLayout pigmentyPanelLayout = new javax.swing.GroupLayout(pigmentyPanel);
@@ -262,6 +280,23 @@ public class InterfejsGraficzny extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>
+
+
+    private void ustawListęFarb(List<Farba> źródło) {
+        modelFarby = new javax.swing.DefaultListModel<Farba>();
+        for (Farba farba : źródło) {
+            System.out.println(farba.toString());
+            modelFarby.addElement(farba);
+        }
+    }
+
+    private void ustawListęPigmentów(List<Pigment> źródło) {
+        modelPigmenty = new javax.swing.DefaultListModel<Pigment>();
+        for (Pigment pigment : źródło) {
+            System.out.println(pigment.toString());
+            modelPigmenty.addElement(pigment);
+        }
+    }
 
     private void usuńZaznaczenieFarbyButtonActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:

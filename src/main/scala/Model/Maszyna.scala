@@ -1,15 +1,23 @@
 package Model
 
 import java.io.{File, IOException}
+
 import Wyjątki.{ZłaFarbaException, ZłyPigmentException}
+
+import scala.collection.JavaConverters._
 
 /**
   * Created by squar on 21/06/2017.
   */
-class Maszyna() {
+@throws(classOf[IOException])
+class Maszyna(){
+  private[this] var kolekcja: Kolekcja = null
+
   /* ten wyjątek powinien być łapany w interfejsie, gdzię będzie można odpowiednio zareagować */
   @throws(classOf[IOException])
-  private[this] val kolekcja: Kolekcja = new Kolekcja(Maszyna.plikKonfiguracyjny)
+  def konfiguruj(): Unit = {
+    kolekcja = new Kolekcja(Maszyna.plikKonfiguracyjny)
+  }
 
   def dodajFarbę(): Unit = {
     kolekcja.dodajFarbę()
@@ -47,15 +55,15 @@ class Maszyna() {
     System.out.println("Wynik mieszania: " + kolekcja.getAktualnaFarba.toString)
   }
 
-  def pobierzListęFarb(): List[String] = {
-    kolekcja.eksportujListęFarb()
+  def pobierzListęFarb(): java.util.List[Farba] = {
+    kolekcja.getKolekcjaFarb.asJava
   }
 
-  def pobierzListęPigmentów(): List[(String, String)] = {
-    kolekcja.eksportujListęPigmentów()
+  def pobierzListęPigmentów(): java.util.List[Pigment] = {
+    kolekcja.getKolekcjaPigmentów.asJava
   }
 }
 
-private object Maszyna {
+object Maszyna {
   private val plikKonfiguracyjny: File = new File("maszyna.conf")
 }

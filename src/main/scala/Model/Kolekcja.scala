@@ -217,17 +217,18 @@ class Kolekcja(val plikKonfiguracyjny: File) {
     }
   }
 
-  private[Model] def eksportujListęFarb(): List[String] = {
-    Nil//TODO
+  private[Model] def getKolekcjaFarb: List[Farba] = {
+    kolekcjaFarb
   }
 
-  private[Model] def eksportujListęPigmentów(): List[(String, String)] = {
-    Nil//TODO
+  private[Model] def getKolekcjaPigmentów: List[Pigment] = {
+    kolekcjaPigmentów
   }
 
   private[Model] def getAktualnaFarba: Farba = {
     aktualnaFarba
   }
+
 
 
   private[Model] def setAktualnaFarba(farba: Farba): Unit = {
