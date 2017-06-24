@@ -32,7 +32,7 @@ class Maszyna(){
     val aktualnaFarba: Farba = kolekcja.znajdźFarbę(kolorFarby)
     kolekcja.setAktualnaFarba(aktualnaFarba)
 
-    System.out.println("Zaczynam mieszanie. " + aktualnaFarba.toString)
+    System.out.println("Zaczynam mieszanie. " + aktualnaFarba.toStringSzczegółowy)
   }
 
   def koniecMieszania(): Unit = {
@@ -51,8 +51,8 @@ class Maszyna(){
     kolekcja.aplikujPigment(wybranyPigment)
 
     /* komunikat wypisywany w przypadku poprawnego dodania pigmentu */
-    System.out.println(wybranyPigment.toString)
-    System.out.println("Wynik mieszania: " + kolekcja.getAktualnaFarba.toString)
+    System.out.println(wybranyPigment.toStringSzczegółowy)
+    System.out.println("Wynik mieszania: " + kolekcja.getAktualnaFarba.toStringSzczegółowy)
   }
 
   def pobierzListęFarb(): java.util.List[Farba] = {

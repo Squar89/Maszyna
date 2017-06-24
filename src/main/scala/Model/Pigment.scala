@@ -34,6 +34,10 @@ class Pigment(private[this] val nazwa: String, private[Model] val pierwszaFarba:
   }
 
   override def toString: String = {
-    s"Wybrany pigment: $nazwa, zmiana toksyczności: $toksycznośćZmiana, zmiana jakości: $jakośćZmiana"
+    s"$nazwa ($pierwszaFarba -> $drugaFarba)"
+  }
+
+  def toStringSzczegółowy: String = {
+    s"$nazwa, zmiana toksyczności: $toksycznośćZmiana, zmiana jakości: $jakośćZmiana"
   }
 }

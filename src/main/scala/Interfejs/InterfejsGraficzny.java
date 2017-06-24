@@ -181,7 +181,7 @@ public class InterfejsGraficzny extends javax.swing.JFrame {
         binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, pigmentyJList, org.jdesktop.beansbinding.ELProperty.create("${selectedElement.toksycznośćZmiana}"), zmianaToksycznośćFormattedTextField, org.jdesktop.beansbinding.BeanProperty.create("value"));
         bindingGroup.addBinding(binding);
 
-        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, dodajPigmentButton, org.jdesktop.beansbinding.ELProperty.create("${selectedElement.jakośćZmiana}"), zmianaJakośćFormattedTextField, org.jdesktop.beansbinding.BeanProperty.create("value"));
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, pigmentyJList, org.jdesktop.beansbinding.ELProperty.create("${selectedElement.jakośćZmiana}"), zmianaJakośćFormattedTextField, org.jdesktop.beansbinding.BeanProperty.create("value"));
         bindingGroup.addBinding(binding);
 
         mieszajButton.setText("Mieszaj");
@@ -283,17 +283,15 @@ public class InterfejsGraficzny extends javax.swing.JFrame {
 
 
     private void ustawListęFarb(List<Farba> źródło) {
-        modelFarby = new javax.swing.DefaultListModel<Farba>();
+        modelFarby.clear();
         for (Farba farba : źródło) {
-            System.out.println(farba.toString());
             modelFarby.addElement(farba);
         }
     }
 
     private void ustawListęPigmentów(List<Pigment> źródło) {
-        modelPigmenty = new javax.swing.DefaultListModel<Pigment>();
+        modelPigmenty.clear();
         for (Pigment pigment : źródło) {
-            System.out.println(pigment.toString());
             modelPigmenty.addElement(pigment);
         }
     }

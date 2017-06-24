@@ -25,6 +25,10 @@ class Farba(private[this] val kolor: String, private[Model] var toksyczność: D
   }
 
   override def toString: String = {
-    s"Wybrana farba: $kolor, toksyczność: $toksyczność, jakość: $jakość"
+    s"$kolor"
+  }
+
+  def toStringSzczegółowy: String = {
+    s"Wybrany farba: $kolor, toksyczność: $toksyczność, jakość: $jakość"
   }
 }
