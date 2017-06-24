@@ -23,7 +23,7 @@ class Maszyna(){
     kolekcja.dodajFarbę()
   }
 
-  def dodajPigment(): Unit = {
+  def dodajPigment(): Unit = {//TODO wygląda na to, że nie działa zaokrąglanie
     kolekcja.dodajPigment()
   }
 

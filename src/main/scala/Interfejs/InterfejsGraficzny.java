@@ -23,7 +23,11 @@ public class InterfejsGraficzny extends javax.swing.JFrame {
             maszyna.konfiguruj();
             ustawListęFarb(maszyna.pobierzListęFarb());
             ustawListęPigmentów(maszyna.pobierzListęPigmentów());
+            mieszajButton.setEnabled(false);
+            użyjPigmentuButton.setEnabled(false);
+            zakończMieszanieButton.setEnabled(false);
         }
+        /* wyjątek zgłoszony w przypadku błędów przy wczytywaniu pliku */
         catch (IOException e) {
             System.exit(1);
         }
@@ -285,31 +289,39 @@ public class InterfejsGraficzny extends javax.swing.JFrame {
     private void ustawListęFarb(List<Farba> źródło) {
         modelFarby.clear();
         for (Farba farba : źródło) {
-            modelFarby.addElement(farba);
+            modelFarby.insertElementAt(farba, 0);
         }
     }
 
     private void ustawListęPigmentów(List<Pigment> źródło) {
         modelPigmenty.clear();
         for (Pigment pigment : źródło) {
-            modelPigmenty.addElement(pigment);
+            modelPigmenty.insertElementAt(pigment, 0);
         }
     }
 
     private void usuńZaznaczenieFarbyButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
-    }
-
-    private void dodajPigmentButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
-    }
-
-    private void dodajFarbeButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+        farbyJList.clearSelection();
+        mieszajButton.setEnabled(false);
+        toksycznośćFormattedTextField.setText("");
+        jakośćFormattedTextField.setText("");
     }
 
     private void usuńZaznaczeniePigmentyButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+        pigmentyJList.clearSelection();
+        użyjPigmentuButton.setEnabled(false);
+        zmianaToksycznośćFormattedTextField.setText("");
+        zmianaJakośćFormattedTextField.setText("");
+    }
+
+    private void dodajFarbeButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        maszyna.dodajFarbę();
+        ustawListęFarb(maszyna.pobierzListęFarb());
+    }
+
+    private void dodajPigmentButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        maszyna.dodajPigment();
+        ustawListęPigmentów(maszyna.pobierzListęPigmentów());
     }
 
     private void mieszajButtonActionPerformed(java.awt.event.ActionEvent evt) {
