@@ -1,5 +1,3 @@
-package Interfejs;
-
 import Model.Maszyna;
 import Wyjątki.*;
 import java.io.IOException;
@@ -446,7 +444,7 @@ public class InterfejsGraficzny extends javax.swing.JFrame {
 
     private void dodajPigmentButtonActionPerformed(java.awt.event.ActionEvent evt) {
         usuńZaznaczeniePigmentyButton.doClick();
-        
+
         maszyna.dodajPigment();
         ustawListęPigmentów(maszyna.pobierzListęPigmentów());
     }
