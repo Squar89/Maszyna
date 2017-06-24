@@ -38,6 +38,6 @@ class Pigment(private[this] val nazwa: String, private[Model] val pierwszaFarba:
   }
 
   def toStringSzczegółowy: String = {
-    s"$nazwa, zmiana toksyczności: $toksycznośćZmiana, zmiana jakości: $jakośćZmiana"
+    s"Zastosowany pigment: $nazwa, zmiana toksyczności: $toksycznośćZmiana, zmiana jakości: $jakośćZmiana"
   }
 }

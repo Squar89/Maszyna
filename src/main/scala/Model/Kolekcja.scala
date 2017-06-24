@@ -192,9 +192,11 @@ class Kolekcja(val plikKonfiguracyjny: File) {
 
     val nowyKolor = pigment.getDrugaFarba()
     val nowaToksyczność =
-      Math.max(Kolekcja.limitToksyczności, obliczZmianę(aktualnaFarba.getToksyczność(), pigment.getToksycznośćZmiana()))
+      Math.max(0, Math.min(Kolekcja.limitToksyczności,
+                           obliczZmianę(aktualnaFarba.getToksyczność(), pigment.getToksycznośćZmiana())))
     val nowaJakość =
-      Math.max(Kolekcja.limitJakości, obliczZmianę(aktualnaFarba.getJakość(), pigment.getJakośćZmiana()))
+      Math.max(0, Math.min(Kolekcja.limitJakości,
+                           obliczZmianę(aktualnaFarba.getJakość(), pigment.getJakośćZmiana())))
 
     aktualnaFarba = new Farba(nowyKolor, nowaToksyczność, nowaJakość)
 

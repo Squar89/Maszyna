@@ -37,14 +37,15 @@ class Maszyna(){
     System.out.println("Koniec mieszania.")
   }
 
+  // BUGLIST
+  // TODO Wyrzuca wyjątek gdy pigment był dodany przez konfiguracje
   @throws(classOf[ZłyPigmentException])
   @throws(classOf[IllegalArgumentException]) /* jeżeli wcześniej nierozpoczęto mieszania */
-  def użyjPigmentu(pigment: Pigment): Unit = {//TODO bug z obliczaniem toksyczności i jakości, możliwe że wchodzi na minus
-                                              //TODO NVM, jest całkowicie popsute :V
+  def użyjPigmentu(pigment: Pigment): Unit = {
     /* dodanie pigmentu wymaga rozpoczęcia mieszania */
     require(kolekcja.getAktualnaFarba != null, "Nierozpoczęto mieszania!")
 
-    kolekcja.aplikujPigment(pigment)//TODO teraz nawet wywala jakies exception?
+    kolekcja.aplikujPigment(pigment)
 
     /* komunikat wypisywany w przypadku poprawnego dodania pigmentu */
     System.out.println(pigment.toStringSzczegółowy)
