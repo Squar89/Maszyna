@@ -4,7 +4,7 @@ import java.io.{File, IOException}
 
 import scala.io.{BufferedSource, Source}
 import scala.util.Random
-import Wyjątki.{ZłaFarbaException, ZłyPigmentException}
+import Wyjątki.ZłyPigmentException
 
 /**
   * Created by squar on 21/06/2017.
@@ -126,13 +126,13 @@ class Kolekcja(val plikKonfiguracyjny: File) {
 
   private[Model] def losujFarbę(): Farba = {
     /* Zwraca losowo wybraną farbę z kolekcji farb */
-    kolekcjaFarb.apply(Random.nextInt(kolekcjaFarb.length - 1))
+    kolekcjaFarb.apply(Random.nextInt(kolekcjaFarb.length))
   }
 
   private def losujNazwęFarby(): String = {
     val alfabet: String = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-"
     def losowyZnakZAlfabetu: Char = {
-      alfabet.charAt(Random.nextInt(alfabet.length - 1))
+      alfabet.charAt(Random.nextInt(alfabet.length))
     }
     var nazwa: String = ""
 
@@ -150,7 +150,7 @@ class Kolekcja(val plikKonfiguracyjny: File) {
   private def losujNazwęPigmentu(): String = {
     val alfabet: String = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
     def losowyZnakZAlfabetu: Char = {
-      alfabet.charAt(Random.nextInt(alfabet.length -1))
+      alfabet.charAt(Random.nextInt(alfabet.length))
     }
     var nazwa: String = ""
 
@@ -201,22 +201,6 @@ class Kolekcja(val plikKonfiguracyjny: File) {
     aktualnaFarba
   }
 
-  @throws(classOf[ZłaFarbaException])
-  private[Model] def znajdźFarbę(kolor: String): Farba = {
-    kolekcjaFarb.find(x => x.getKolor() == kolor) match {
-      case Some(farba) => farba
-      case None => throw ZłaFarbaException("Brak takiej farby w kolekcji!")
-    }
-  }
-
-  @throws(classOf[ZłyPigmentException])
-  private[Model] def znajdźPigment(nazwa: String): Pigment = {
-    kolekcjaPigmentów.find(x => x.getNazwa() == nazwa) match {
-      case Some(pigment) => pigment
-      case None => throw ZłyPigmentException("Brak takiego pigmentu w kolekcji!")
-    }
-  }
-
   private[Model] def getKolekcjaFarb: List[Farba] = {
     kolekcjaFarb
   }
@@ -228,8 +212,6 @@ class Kolekcja(val plikKonfiguracyjny: File) {
   private[Model] def getAktualnaFarba: Farba = {
     aktualnaFarba
   }
-
-
 
   private[Model] def setAktualnaFarba(farba: Farba): Unit = {
     aktualnaFarba = farba
@@ -271,11 +253,11 @@ private object Kolekcja {
   private def losujZmianę(): String = {
     val alfabet: String = "*+-"
     def losowyZnakZAlfabetu: Char = {
-      alfabet.charAt(Random.nextInt(alfabet.length - 1))
+      alfabet.charAt(Random.nextInt(alfabet.length))
     }
     def losowaZmiana: String = {
       /* losuje liczbę rzeczywistą z przedziału (0 - 100) z zaokrągleniem do części setnych */
-      "" + ((Random.nextDouble() * Random.nextInt(limitToksyczności)) % 0.01)
+      "" + (math.rint((Random.nextDouble() * Random.nextInt(limitToksyczności)) * 100) / 100)
     }
 
     "" + losowyZnakZAlfabetu + losowaZmiana

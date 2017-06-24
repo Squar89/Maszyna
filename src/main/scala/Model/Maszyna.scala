@@ -2,7 +2,7 @@ package Model
 
 import java.io.{File, IOException}
 
-import Wyjątki.{ZłaFarbaException, ZłyPigmentException}
+import Wyjątki.ZłyPigmentException
 
 import scala.collection.JavaConverters._
 
@@ -23,16 +23,14 @@ class Maszyna(){
     kolekcja.dodajFarbę()
   }
 
-  def dodajPigment(): Unit = {//TODO wygląda na to, że nie działa zaokrąglanie
+  def dodajPigment(): Unit = {
     kolekcja.dodajPigment()
   }
 
-  @throws(classOf[ZłaFarbaException])
-  def mieszaj(kolorFarby: String): Unit = {
-    val aktualnaFarba: Farba = kolekcja.znajdźFarbę(kolorFarby)
-    kolekcja.setAktualnaFarba(aktualnaFarba)
+  def mieszaj(farba: Farba): Unit = {
+    kolekcja.setAktualnaFarba(farba)
 
-    System.out.println("Zaczynam mieszanie. " + aktualnaFarba.toStringSzczegółowy)
+    System.out.println("Zaczynam mieszanie. " + farba.toStringSzczegółowy)
   }
 
   def koniecMieszania(): Unit = {
@@ -43,15 +41,15 @@ class Maszyna(){
 
   @throws(classOf[ZłyPigmentException])
   @throws(classOf[IllegalArgumentException]) /* jeżeli wcześniej nierozpoczęto mieszania */
-  def użyjPigmentu(nazwaPigmentu: String): Unit = {
-    val wybranyPigment: Pigment = kolekcja.znajdźPigment(nazwaPigmentu)
+  def użyjPigmentu(pigment: Pigment): Unit = {//TODO bug z obliczaniem toksyczności i jakości, możliwe że wchodzi na minus
+                                              //TODO NVM, jest całkowicie popsute :V
     /* dodanie pigmentu wymaga rozpoczęcia mieszania */
     require(kolekcja.getAktualnaFarba != null, "Nierozpoczęto mieszania!")
 
-    kolekcja.aplikujPigment(wybranyPigment)
+    kolekcja.aplikujPigment(pigment)
 
     /* komunikat wypisywany w przypadku poprawnego dodania pigmentu */
-    System.out.println(wybranyPigment.toStringSzczegółowy)
+    System.out.println(pigment.toStringSzczegółowy)
     System.out.println("Wynik mieszania: " + kolekcja.getAktualnaFarba.toStringSzczegółowy)
   }
 

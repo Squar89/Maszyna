@@ -302,7 +302,14 @@ public class InterfejsGraficzny extends javax.swing.JFrame {
 
     private void usuńZaznaczenieFarbyButtonActionPerformed(java.awt.event.ActionEvent evt) {
         farbyJList.clearSelection();
+
+        if (użyjPigmentuButton.isEnabled()) {
+            maszyna.koniecMieszania();
+            użyjPigmentuButton.setEnabled(false);
+        }
+
         mieszajButton.setEnabled(false);
+
         toksycznośćFormattedTextField.setText("");
         jakośćFormattedTextField.setText("");
     }
@@ -310,6 +317,7 @@ public class InterfejsGraficzny extends javax.swing.JFrame {
     private void usuńZaznaczeniePigmentyButtonActionPerformed(java.awt.event.ActionEvent evt) {
         pigmentyJList.clearSelection();
         użyjPigmentuButton.setEnabled(false);
+
         zmianaToksycznośćFormattedTextField.setText("");
         zmianaJakośćFormattedTextField.setText("");
     }
@@ -325,20 +333,42 @@ public class InterfejsGraficzny extends javax.swing.JFrame {
     }
 
     private void mieszajButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+        maszyna.mieszaj(farbyJList.getSelectedValue());
+
+        mieszajButton.setEnabled(false);
+        użyjPigmentuButton.setEnabled(true);
+        zakończMieszanieButton.setEnabled(true);
     }
 
     private void użyjPigmentuButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+        try {
+            maszyna.użyjPigmentu(pigmentyJList.getSelectedValue());
+        }
+        catch (ZłyPigmentException e) {
+            //TODO dorób okienko dialogowe o złym pigmencie
+        }
+        catch (IllegalArgumentException e) {
+            //TODO dorób okienko dialogowe o nierozpoczęciu mieszania
+        }
     }
 
     private void zakończMieszanieButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+        maszyna.koniecMieszania();
+
+        usuńZaznaczeniePigmentyButton.doClick();
+        usuńZaznaczenieFarbyButton.doClick();
     }
 
     private void farbyJListValueChanged(javax.swing.event.ListSelectionEvent evt) {
-        // TODO add your handling code here:
+        if (użyjPigmentuButton.isEnabled()) {
+            zakończMieszanieButton.doClick();
+        }
+
+        mieszajButton.setEnabled(true);
+
     }
+
+    //TODO dorób actionlistenery do wartości farb i pigmentów (mają sprawdzać czy jest włączone mieszanie i standardowo je wyłączać
 
     /**
      * @param args the command line arguments
