@@ -44,7 +44,12 @@ public class InterfejsGraficzny extends javax.swing.JFrame {
     private void initComponents() {
         bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
-        jButton5 = new javax.swing.JButton();
+        złyPigmentjDialog = new javax.swing.JDialog();
+        złyPigmentOstrzeżenie = new javax.swing.JLabel();
+        OKZłyPigmentButton = new javax.swing.JButton();
+        brakMieszaniajDialog = new javax.swing.JDialog();
+        brakMieszaniaOstrzeżenie = new javax.swing.JLabel();
+        OKBrakMieszaniaButton = new javax.swing.JButton();
         farbyPanel = new javax.swing.JPanel();
         dodajFarbeButton = new javax.swing.JButton();
         usuńZaznaczenieFarbyButton = new javax.swing.JButton();
@@ -69,7 +74,81 @@ public class InterfejsGraficzny extends javax.swing.JFrame {
         użyjPigmentuButton = new javax.swing.JButton();
         zakończMieszanieButton = new javax.swing.JButton();
 
-        jButton5.setText("jButton5");
+        złyPigmentjDialog.setAlwaysOnTop(true);
+        złyPigmentjDialog.setMinimumSize(new java.awt.Dimension(500, 150));
+
+        złyPigmentOstrzeżenie.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        złyPigmentOstrzeżenie.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        złyPigmentOstrzeżenie.setText("Wybrany pigment nie pasuje do wybranej farby!");
+
+        OKZłyPigmentButton.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        OKZłyPigmentButton.setText("OK");
+        OKZłyPigmentButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                OKZłyPigmentButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout złyPigmentjDialogLayout = new javax.swing.GroupLayout(złyPigmentjDialog.getContentPane());
+        złyPigmentjDialog.getContentPane().setLayout(złyPigmentjDialogLayout);
+        złyPigmentjDialogLayout.setHorizontalGroup(
+                złyPigmentjDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(złyPigmentjDialogLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(złyPigmentOstrzeżenie, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addContainerGap())
+                        .addGroup(złyPigmentjDialogLayout.createSequentialGroup()
+                                .addGap(161, 161, 161)
+                                .addComponent(OKZłyPigmentButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(165, 165, 165))
+        );
+        złyPigmentjDialogLayout.setVerticalGroup(
+                złyPigmentjDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, złyPigmentjDialogLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(złyPigmentOstrzeżenie, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(OKZłyPigmentButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(10, 10, 10))
+        );
+
+        brakMieszaniajDialog.setAlwaysOnTop(true);
+        brakMieszaniajDialog.setMinimumSize(new java.awt.Dimension(500, 150));
+
+        brakMieszaniaOstrzeżenie.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        brakMieszaniaOstrzeżenie.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        brakMieszaniaOstrzeżenie.setText("Musisz najpierw rozpocząć mieszanie!");
+
+        OKBrakMieszaniaButton.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        OKBrakMieszaniaButton.setText("OK");
+        OKBrakMieszaniaButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                OKBrakMieszaniaButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout brakMieszaniajDialogLayout = new javax.swing.GroupLayout(brakMieszaniajDialog.getContentPane());
+        brakMieszaniajDialog.getContentPane().setLayout(brakMieszaniajDialogLayout);
+        brakMieszaniajDialogLayout.setHorizontalGroup(
+                brakMieszaniajDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(brakMieszaniajDialogLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(brakMieszaniaOstrzeżenie, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addContainerGap())
+                        .addGroup(brakMieszaniajDialogLayout.createSequentialGroup()
+                                .addGap(161, 161, 161)
+                                .addComponent(OKBrakMieszaniaButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(165, 165, 165))
+        );
+        brakMieszaniajDialogLayout.setVerticalGroup(
+                brakMieszaniajDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, brakMieszaniajDialogLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(brakMieszaniaOstrzeżenie, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(OKBrakMieszaniaButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(10, 10, 10))
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -138,6 +217,11 @@ public class InterfejsGraficzny extends javax.swing.JFrame {
         });
 
         pigmentyJList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        pigmentyJList.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                pigmentyJListValueChanged(evt);
+            }
+        });
         jScrollPane2.setViewportView(pigmentyJList);
 
         javax.swing.GroupLayout pigmentyPanelLayout = new javax.swing.GroupLayout(pigmentyPanel);
@@ -179,14 +263,38 @@ public class InterfejsGraficzny extends javax.swing.JFrame {
         org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, farbyJList, org.jdesktop.beansbinding.ELProperty.create("${selectedElement.toksyczność}"), toksycznośćFormattedTextField, org.jdesktop.beansbinding.BeanProperty.create("value"));
         bindingGroup.addBinding(binding);
 
+        toksycznośćFormattedTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                toksycznośćFormattedTextFieldActionPerformed(evt);
+            }
+        });
+
         binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, farbyJList, org.jdesktop.beansbinding.ELProperty.create("${selectedElement.jakość}"), jakośćFormattedTextField, org.jdesktop.beansbinding.BeanProperty.create("value"));
         bindingGroup.addBinding(binding);
+
+        jakośćFormattedTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jakośćFormattedTextFieldActionPerformed(evt);
+            }
+        });
 
         binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, pigmentyJList, org.jdesktop.beansbinding.ELProperty.create("${selectedElement.toksycznośćZmiana}"), zmianaToksycznośćFormattedTextField, org.jdesktop.beansbinding.BeanProperty.create("value"));
         bindingGroup.addBinding(binding);
 
+        zmianaToksycznośćFormattedTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                zmianaToksycznośćFormattedTextFieldActionPerformed(evt);
+            }
+        });
+
         binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, pigmentyJList, org.jdesktop.beansbinding.ELProperty.create("${selectedElement.jakośćZmiana}"), zmianaJakośćFormattedTextField, org.jdesktop.beansbinding.BeanProperty.create("value"));
         bindingGroup.addBinding(binding);
+
+        zmianaJakośćFormattedTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                zmianaJakośćFormattedTextFieldActionPerformed(evt);
+            }
+        });
 
         mieszajButton.setText("Mieszaj");
         mieszajButton.setPreferredSize(new java.awt.Dimension(150, 29));
@@ -300,12 +408,19 @@ public class InterfejsGraficzny extends javax.swing.JFrame {
         }
     }
 
+    private void przerwijMieszanie() {
+        maszyna.koniecMieszania();
+
+        mieszajButton.setEnabled(true);
+        użyjPigmentuButton.setEnabled(false);
+        zakończMieszanieButton.setEnabled(false);
+    }
+
     private void usuńZaznaczenieFarbyButtonActionPerformed(java.awt.event.ActionEvent evt) {
         farbyJList.clearSelection();
 
         if (użyjPigmentuButton.isEnabled()) {
-            maszyna.koniecMieszania();
-            użyjPigmentuButton.setEnabled(false);
+            przerwijMieszanie();
         }
 
         mieszajButton.setEnabled(false);
@@ -336,7 +451,12 @@ public class InterfejsGraficzny extends javax.swing.JFrame {
         maszyna.mieszaj(farbyJList.getSelectedValue());
 
         mieszajButton.setEnabled(false);
-        użyjPigmentuButton.setEnabled(true);
+        if (pigmentyJList.isSelectionEmpty())  {
+            użyjPigmentuButton.setEnabled(false);
+        }
+        else {
+            użyjPigmentuButton.setEnabled(true);
+        }
         zakończMieszanieButton.setEnabled(true);
     }
 
@@ -345,15 +465,16 @@ public class InterfejsGraficzny extends javax.swing.JFrame {
             maszyna.użyjPigmentu(pigmentyJList.getSelectedValue());
         }
         catch (ZłyPigmentException e) {
-            //TODO dorób okienko dialogowe o złym pigmencie
+            złyPigmentjDialog.setVisible(true);
         }
+        /* wyjątek zwracany przez scala request */
         catch (IllegalArgumentException e) {
-            //TODO dorób okienko dialogowe o nierozpoczęciu mieszania
+            brakMieszaniajDialog.setVisible(true);
         }
     }
 
     private void zakończMieszanieButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        maszyna.koniecMieszania();
+        przerwijMieszanie();
 
         usuńZaznaczeniePigmentyButton.doClick();
         usuńZaznaczenieFarbyButton.doClick();
@@ -361,14 +482,49 @@ public class InterfejsGraficzny extends javax.swing.JFrame {
 
     private void farbyJListValueChanged(javax.swing.event.ListSelectionEvent evt) {
         if (użyjPigmentuButton.isEnabled()) {
-            zakończMieszanieButton.doClick();
+            przerwijMieszanie();
         }
 
         mieszajButton.setEnabled(true);
-
     }
 
-    //TODO dorób actionlistenery do wartości farb i pigmentów (mają sprawdzać czy jest włączone mieszanie i standardowo je wyłączać
+    private void pigmentyJListValueChanged(javax.swing.event.ListSelectionEvent evt) {
+        if (zakończMieszanieButton.isEnabled()) {
+            użyjPigmentuButton.setEnabled(true);
+        }
+    }
+
+    private void toksycznośćFormattedTextFieldActionPerformed(java.awt.event.ActionEvent evt) {
+        if (użyjPigmentuButton.isEnabled()) {
+            przerwijMieszanie();
+        }
+    }
+
+    private void jakośćFormattedTextFieldActionPerformed(java.awt.event.ActionEvent evt) {
+        if (użyjPigmentuButton.isEnabled()) {
+            przerwijMieszanie();
+        }
+    }
+
+    private void zmianaToksycznośćFormattedTextFieldActionPerformed(java.awt.event.ActionEvent evt) {
+        if (użyjPigmentuButton.isEnabled()) {
+            przerwijMieszanie();
+        }
+    }
+
+    private void zmianaJakośćFormattedTextFieldActionPerformed(java.awt.event.ActionEvent evt) {
+        if (użyjPigmentuButton.isEnabled()) {
+            przerwijMieszanie();
+        }
+    }
+
+    private void OKZłyPigmentButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        złyPigmentjDialog.setVisible(false);
+    }
+
+    private void OKBrakMieszaniaButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        brakMieszaniajDialog.setVisible(false);
+    }
 
     /**
      * @param args the command line arguments
@@ -406,11 +562,16 @@ public class InterfejsGraficzny extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify
+    private javax.swing.JButton OKBrakMieszaniaButton;
+    private javax.swing.JButton OKZłyPigmentButton;
+    private javax.swing.JLabel brakMieszaniaOstrzeżenie;
+    private javax.swing.JDialog brakMieszaniajDialog;
+    private javax.swing.JLabel złyPigmentOstrzeżenie;
+    private javax.swing.JDialog złyPigmentjDialog;
     private javax.swing.JButton dodajFarbeButton;
     private javax.swing.JButton dodajPigmentButton;
     private javax.swing.JList<Farba> farbyJList;
     private javax.swing.JPanel farbyPanel;
-    private javax.swing.JButton jButton5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JFormattedTextField jakośćFormattedTextField;

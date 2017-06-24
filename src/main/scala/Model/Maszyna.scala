@@ -1,9 +1,7 @@
 package Model
 
 import java.io.{File, IOException}
-
 import Wyjątki.ZłyPigmentException
-
 import scala.collection.JavaConverters._
 
 /**
@@ -46,7 +44,7 @@ class Maszyna(){
     /* dodanie pigmentu wymaga rozpoczęcia mieszania */
     require(kolekcja.getAktualnaFarba != null, "Nierozpoczęto mieszania!")
 
-    kolekcja.aplikujPigment(pigment)
+    kolekcja.aplikujPigment(pigment)//TODO teraz nawet wywala jakies exception?
 
     /* komunikat wypisywany w przypadku poprawnego dodania pigmentu */
     System.out.println(pigment.toStringSzczegółowy)

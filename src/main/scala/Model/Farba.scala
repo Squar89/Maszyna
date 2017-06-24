@@ -29,6 +29,6 @@ class Farba(private[this] val kolor: String, private[Model] var toksyczność: D
   }
 
   def toStringSzczegółowy: String = {
-    s"Wybrany farba: $kolor, toksyczność: $toksyczność, jakość: $jakość"
+    s"Wybrana farba: $kolor, toksyczność: $toksyczność, jakość: $jakość"
   }
 }
