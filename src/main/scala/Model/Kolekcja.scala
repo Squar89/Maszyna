@@ -185,10 +185,10 @@ class Kolekcja(val plikKonfiguracyjny: File) {
     }
 
     def obliczZmianę(wartość: Double, zmiana: String): Double = zmiana.charAt(0) match {
-        case '*' => wartość * zmiana.drop(1).toDouble
+        case 'x' => wartość * zmiana.drop(1).toDouble
         case '+' => wartość + zmiana.drop(1).toDouble
         case '-' => wartość - zmiana.drop(1).toDouble
-      }
+    }
 
     val nowyKolor = pigment.getDrugaFarba()
     val nowaToksyczność =
@@ -253,7 +253,7 @@ private object Kolekcja {
   }
 
   private def losujZmianę(): String = {
-    val alfabet: String = "*+-"
+    val alfabet: String = "x+-"
     def losowyZnakZAlfabetu: Char = {
       alfabet.charAt(Random.nextInt(alfabet.length))
     }

@@ -28,7 +28,7 @@ class Maszyna(){
   def mieszaj(farba: Farba): Unit = {
     kolekcja.setAktualnaFarba(farba)
 
-    System.out.println("Zaczynam mieszanie. " + farba.toStringSzczegółowy)
+    System.out.println("Zaczynam mieszanie farby: " + farba.toStringSzczegółowy)
   }
 
   def koniecMieszania(): Unit = {
@@ -37,8 +37,6 @@ class Maszyna(){
     System.out.println("Koniec mieszania.")
   }
 
-  // BUGLIST
-  // TODO Wyrzuca wyjątek gdy pigment był dodany przez konfiguracje
   @throws(classOf[ZłyPigmentException])
   @throws(classOf[IllegalArgumentException]) /* jeżeli wcześniej nierozpoczęto mieszania */
   def użyjPigmentu(pigment: Pigment): Unit = {
